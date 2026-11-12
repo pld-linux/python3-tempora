@@ -6,22 +6,24 @@
 Summary:	Objects and routines pertaining to date and time
 Summary(pl.UTF-8):	Obiekty i funkcje związane z datą i czasem
 Name:		python3-tempora
-Version:	5.8.1
+Version:	5.13.0
 Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/tempora/
 Source0:	https://files.pythonhosted.org/packages/source/t/tempora/tempora-%{version}.tar.gz
-# Source0-md5:	208d59bfe14a913199d3e284c56f195c
+# Source0-md5:	644e520d3c9619dc9770f1c8448aa4b3
 URL:		https://pypi.org/project/tempora/
 BuildRequires:	python3-build
-BuildRequires:	python3-coherent.licensed
+BuildRequires:	python3-flit_core >= 3.11
+BuildRequires:	python3-flit_core < 4
 BuildRequires:	python3-installer
-BuildRequires:	python3-modules >= 1:3.9
-BuildRequires:	python3-setuptools >= 1:77
-BuildRequires:	python3-setuptools_scm >= 3.4.1
+BuildRequires:	python3-modules >= 1:3.10
 %if %{with tests}
 BuildRequires:	python3-dateutil
+BuildRequires:	python3-freezegun
+BuildRequires:	python3-jaraco.collections
+BuildRequires:	python3-jaraco.context
 BuildRequires:	python3-jaraco.functools >= 1.20
 BuildRequires:	python3-pytest >= 6
 #BuildRequires:	python3-pytest-checkdocs >= 2.4
@@ -42,7 +44,7 @@ BuildRequires:	python3-rst.linker >= 1.9
 #BuildRequires:	python3-sphinx-lint
 BuildRequires:	sphinx-pdg-3 >= 3.5
 %endif
-Requires:	python3-modules >= 1:3.9
+Requires:	python3-modules >= 1:3.10
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -107,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE NEWS.rst README.rst SECURITY.md
+%doc README.md
 %attr(755,root,root) %{_bindir}/calc-prorate-3
 %{_bindir}/calc-prorate
 %{py3_sitescriptdir}/tempora
